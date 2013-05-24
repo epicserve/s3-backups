@@ -8,6 +8,13 @@ S3 Backups goal is to provide easy scripts that system administrators can use
 to backup data from programs likes PostgreSQL, MySQL, Redis, etc. Currently
 the only script it provides is a script for backing up PostgreSQL.
 
+Installation
+------------
+
+To install s3-backups::
+
+    $ pip install https://bitbucket.org/epicserve/s3-backups/get/master.zip
+
 Usage
 -----
 
@@ -19,13 +26,6 @@ To backup PostgreSQL, run the following::
     --S3_BUCKET_NAME='my-backup-bucket' \
     --S3_KEY_NAME='postgres/my-awesome-server' \
     --backup
-
-Installation
-------------
-
-To install s3-backups::
-
-    $ pip install https://bitbucket.org/epicserve/s3-backups/get/master.zip
 
 Contribute
 ----------
