@@ -25,7 +25,7 @@ setup(
     package_data={},
     package_dir={'s3_backups': 's3_backups'},
     include_package_data=True,
-    install_requires=['boto==2.9.4'],
+    install_requires=['boto==2.9.4', 'python-dateutil==2.1'],
     license=open('LICENSE').read(),
     zip_safe=False,
     scripts=['s3_backups/postgres_to_s3.py'],
