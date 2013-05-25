@@ -150,7 +150,7 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     parser.add_argument('--POSTGRES_DUMP_PATH', default='/usr/bin/pg_dumpall', help="Path to pg_dumpall (default: /usr/bin/pg_dumpall)")
     parser.add_argument('--ARCHIVE_NAME', default='all_databases', help='The base name for the archive')
-    parser.add_argument('--schedule_module', default='schedules.default', help='Use a different archive schedule module (default: schedules.default)')
+    parser.add_argument('--schedule_module', default='s3_backups.schedules.default', help='Use a different archive schedule module (default: schedules.default)')
     parser.add_argument('--backup', action='store_true', help='Backup up Postgres to S3')
     parser.add_argument('--archive', action='store_true', help='Archive backups on S3')
     args = parser.parse_args()
