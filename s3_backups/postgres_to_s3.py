@@ -44,8 +44,9 @@ def backup():
 
     # create postgres databeses dump
     with tempfile.NamedTemporaryFile() as t1:
-        proc1 = subprocess.Popen(POSTGRES_DUMP_PATH, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        t1.write(proc1.communicate()[0])
+        proc1 = subprocess.Popen(POSTGRES_DUMP_PATH, shell=True, universal_newlines=True, stdout=t1)
+        proc1.wait()
+        t1.flush()
 
         # create tar.gz for the above two files
         t2 = tempfile.NamedTemporaryFile()
