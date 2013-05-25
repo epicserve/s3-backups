@@ -19,6 +19,7 @@ setup(
     description='Backup stuff to S3',
     author="Brent O'Connor",
     author_email='epicserve@gmail.com',
+    url='https://github.com/epicserve/s3-backups',
     packages=[
         's3_backups',
         's3_backups.schedules',
