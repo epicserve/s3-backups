@@ -14,7 +14,7 @@ if sys.argv[-1] == 'publish':
     sys.exit()
 
 setup(
-    name='s3_backups',
+    name='s3-backups',
     version=s3_backups.__version__,
     description='Backup stuff to S3',
     author="Brent O'Connor",
