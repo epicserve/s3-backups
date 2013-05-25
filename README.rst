@@ -15,7 +15,7 @@ Installation
 
 To install s3-backups::
 
-    $ sudo pip install https://github.com/epicserve/s3-backups/archive/master.zip
+    $ sudo pip install s3-backups
 
 Usage
 -----
