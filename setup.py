@@ -21,6 +21,7 @@ setup(
     author_email='epicserve@gmail.com',
     packages=[
         's3_backups',
+        's3_backups.schedules',
     ],
     package_data={},
     package_dir={'s3_backups': 's3_backups'},

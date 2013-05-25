@@ -86,10 +86,6 @@ class archive(object):
     def __init__(self, schedule_module='schedules.default'):
 
         schedule = importlib.import_module(schedule_module)
-        utc = tz.tzutc()
-        gmt = tz.gettz('GMT')
-        local_tz = tz.tzlocal()
-
         conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
         bucket = conn.get_bucket(S3_BUCKET_NAME)
 
@@ -100,12 +96,7 @@ class archive(object):
         for key in bucket.list(key_name):
             if not key.name.endswith("/"):
 
-                # convert the last_modified GMT datetime string to a datetime
-                # object and create utc and local datetime objects
-                key.last_modified = datetime.strptime(key.last_modified, "%Y-%m-%dT%H:%M:%S.%fZ")
-                key.last_modified = key.last_modified.replace(tzinfo=gmt)
-                key.utc_last_modified = key.last_modified.astimezone(utc)
-                key.local_last_modified = key.last_modified.astimezone(local_tz)
+                key = self.add_datetimes_to_key(key)
 
                 # create a new key that puts the archive in a year/month sub
                 # directory if it's not in a year/month sub directory already
@@ -125,6 +116,24 @@ class archive(object):
                     bucket.delete_key(key.name)
                 elif not keep_file:
                     bucket.delete_key(key.name)
+
+    @classmethod
+    def add_datetimes_to_key(self, key):
+        """
+        Convert the last_modified GMT datetime string to a datetime object and
+        create utc and local datetime objects.
+        """
+
+        utc = tz.tzutc()
+        gmt = tz.gettz('GMT')
+        local_tz = tz.tzlocal()
+
+        key.last_modified = datetime.strptime(key.last_modified, "%Y-%m-%dT%H:%M:%S.%fZ")
+        key.last_modified = key.last_modified.replace(tzinfo=gmt)
+        key.utc_last_modified = key.last_modified.astimezone(utc)
+        key.local_last_modified = key.last_modified.astimezone(local_tz)
+
+        return key
 
 
 if __name__ == '__main__':

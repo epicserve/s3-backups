@@ -22,7 +22,7 @@ class OddEven:
 
     current = 'even'
 
-    def get_new(self):
+    def toggle(self):
         if self.current == 'even':
             self.current = 'odd'
         else:
@@ -36,7 +36,7 @@ def keep_file(key):
     utcnow = datetime.utcnow()
     utcnow = utcnow.replace(tzinfo=utc)
     timediff = utcnow - key.utc_last_modified
-    odd_even = oe.get_new()
+    odd_even = oe.toggle()
 
     if timediff <= ONE_WEEK:
         log.info("%s - Keeping key \"%s\" because it's less than a week old." % (timediff, key.name))
