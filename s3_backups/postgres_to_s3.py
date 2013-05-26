@@ -11,7 +11,6 @@ import importlib
 import tarfile
 import subprocess
 import tempfile
-import os
 import argparse
 import logging
 import sys
@@ -161,7 +160,7 @@ if __name__ == '__main__':
     S3_BUCKET_NAME = args.S3_BUCKET_NAME
     S3_KEY_NAME = args.S3_KEY_NAME
     POSTGRES_DUMP_PATH = args.POSTGRES_DUMP_PATH
-    ARCHIVE_NAME = os.environ.get('ARCHIVE_NAME', 'all_databases')
+    ARCHIVE_NAME = args.ARCHIVE_NAME
 
     if args.verbose:
         log.setLevel(logging.INFO)
