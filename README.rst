@@ -12,8 +12,7 @@ Overview
 --------
 
 S3 Backups provides easy scripts that system administrators can use to backup
-data from programs likes PostgreSQL, MySQL, Redis, etc. Currently S3 Backups
-has scripts for backing up PostgreSQL and Redis.
+data from programs likes PostgreSQL, MySQL, Redis, etc.
 
 Installation
 ------------
@@ -46,6 +45,17 @@ Add the following to the file ``/etc/cron.d/redis_to_s3`` and then change the co
 ::
 
     0 */1 * * * root redis_to_s3.py --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' --S3_BUCKET_NAME='my-backup-bucket' --S3_KEY_NAME='redis/my-awesome-server' --backup --archive
+
+
+MySQL
+'''''
+
+Add the following to the file ``/etc/cron.d/mysql_to_s3`` and then change the command arguments so the command is using your correct AWS credentials, backup bucket and the correct base S3 Key/base folder.
+
+::
+
+    0 */1 * * * root mysql_to_s3.py --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' --S3_BUCKET_NAME='my-backup-bucket' --S3_KEY_NAME='redis/my-awesome-server' --backup --archive
+
 
 
 Manually Running Backups and Archiving
@@ -93,6 +103,22 @@ To backup Redis, run the following::
 To archive Redis, run the following::
 
     $ redis_to_s3.py \
+    --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' \
+    --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' \
+    --S3_BUCKET_NAME='my-backup-bucket' \
+    --S3_KEY_NAME='redis/my-awesome-server' --archive
+
+To backup MySQL, run the following::
+
+    $ mysql_to_s3.py \
+    --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' \
+    --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' \
+    --S3_BUCKET_NAME='my-backup-bucket' \
+    --S3_KEY_NAME='redis/my-awesome-server' --backup
+
+To archive MySQL, run the following::
+
+    $ mysql_to_s3.py \
     --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' \
     --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' \
     --S3_BUCKET_NAME='my-backup-bucket' \
