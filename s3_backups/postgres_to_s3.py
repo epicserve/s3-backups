@@ -21,7 +21,7 @@ log = logging.getLogger('s3_backups')
 
 @timeit("The backup took %(time)s to run")
 def backup():
-    """Backups Postgres to S3 using pg_dump"""
+    """Backup Postgres to S3 using pg_dump"""
 
     key_name = S3_KEY_NAME
     if not key_name.endswith("/") and key_name != "":
@@ -39,7 +39,7 @@ def backup():
     }
     FILENAME = ARCHIVE_NAME + FILENAME_SUFFIX + ".tar.gz"
 
-    log.info("Preparing " + ARCHIVE_NAME + ".tar.gz from the database dump ...")
+    log.info("Preparing " + FILENAME + " from the database dump ...")
 
     # create postgres databeses dump
     with tempfile.NamedTemporaryFile() as t1:
@@ -70,6 +70,7 @@ def backup():
         k = Key(bucket)
         k.key = key_name + FILENAME
         k.set_contents_from_filename(t2.name)
+        t2.close()
 
         log.info("Sucessfully uploaded the archive to Amazon S3")
 
