@@ -51,7 +51,7 @@ Add the following to the file ``/etc/cron.d/mysql_to_s3`` and then change the co
 
 ::
 
-    0 */1 * * * root mysql_to_s3.py --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' --S3_BUCKET_NAME='my-backup-bucket' --S3_KEY_NAME='redis/my-awesome-server' --backup --archive
+    0 */1 * * * root mysql_to_s3.py --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' --S3_BUCKET_NAME='my-backup-bucket' --S3_KEY_NAME='mysql/my-awesome-server' --backup --archive
 
 
 
