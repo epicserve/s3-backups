@@ -15,6 +15,7 @@ import argparse
 import logging
 import sys
 import re
+import os
 
 log = logging.getLogger('s3_backups')
 
@@ -141,11 +142,17 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Backs up Postgres to S3 using pg_dump or archives backups.')
 
+    # Finds the environment variables for AWS credentials prior to the argparse argument definition
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
     # required arguments
-    parser.add_argument('--AWS_ACCESS_KEY_ID', required=True, help='S3 access key')
-    parser.add_argument('--AWS_SECRET_ACCESS_KEY', required=True, help='S3 secret access key')
     parser.add_argument('--S3_BUCKET_NAME', required=True, help='S3 bucket name')
     parser.add_argument('--S3_KEY_NAME', required=True, help='S3 key name, the directory path where you want to put archive (i.e. backups/postgres/server_name)')
+
+    # required arguments if not defined in environment variables
+    parser.add_argument('--AWS_ACCESS_KEY_ID', required=AWS_ACCESS_KEY_ID is None, help='S3 access key (required if not defined in AWS_ACCESS_KEY_ID environment variable)', default=AWS_ACCESS_KEY_ID)
+    parser.add_argument('--AWS_SECRET_ACCESS_KEY', required=AWS_SECRET_ACCESS_KEY is None, help='S3 secret access key (required if not defined in AWS_SECRET_ACCESS_KEY environment variable)', default=AWS_SECRET_ACCESS_KEY)
 
     # optional arguments
     parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
