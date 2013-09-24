@@ -124,7 +124,7 @@ To archive MySQL, run the following::
 Contribute
 ----------
 
-1. Look for an open `issue <https://github.com/epicserve/s3-backups/issues>`_ or create new issue to get a dialog going about the new feature or bug that you've descovered.
+1. Look for an open `issue <https://github.com/epicserve/s3-backups/issues>`_ or create new issue to get a dialog going about the new feature or bug that you've discovered.
 
 2. Fork the `repository <https://github.com/epicserve/s3-backups>`_ on Github to start making your changes to the master branch (or branch off of it).
 
