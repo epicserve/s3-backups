@@ -141,7 +141,7 @@ class archive(object):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description='Backs up Postgres to S3 using pg_dump or archives backups.')
+    parser = argparse.ArgumentParser(description='Backs up MySQL to S3 using mysqldump or archives backups.')
 
     # Finds the environment variables for AWS credentials prior to the argparse argument definition
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -163,7 +163,7 @@ if __name__ == '__main__':
     parser.add_argument('--MYSQL_PASSWORD', default='', help="Mysql password (default: '')")
     parser.add_argument('--ARCHIVE_NAME', default='all_databases', help='The base name for the archive')
     parser.add_argument('--schedule_module', default='s3_backups.schedules.default', help='Use a different archive schedule module (default: s3_backups.schedules.default)')
-    parser.add_argument('--backup', action='store_true', help='Backup up Postgres to S3')
+    parser.add_argument('--backup', action='store_true', help='Backup up MySQL to S3')
     parser.add_argument('--archive', action='store_true', help='Archive backups on S3')
     args = parser.parse_args()
 
