@@ -2,8 +2,7 @@ language: python
 python:
   - "2.7"
 install:
-  - pip install https://github.com/epicserve/pyflakes/archive/master.zip
-  - pip install pep8
+  - pip install -r requirements/dev.txt
   - pip install . --use-mirrors
 script:
   - make test

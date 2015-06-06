@@ -1,0 +1,3 @@
+boto==2.9.4
+https://github.com/epicserve/pyflakes/archive/master.zip
+pep8
