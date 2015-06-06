@@ -2,7 +2,8 @@ language: python
 python:
   - "2.7"
 install:
-  - pip install flake8==2.0 --use-mirrors
+  - pip install https://github.com/epicserve/pyflakes/archive/master.zip
+  - pip install pep8
   - pip install . --use-mirrors
 script:
   - make test
