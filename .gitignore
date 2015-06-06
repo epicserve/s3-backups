@@ -1,5 +1,8 @@
+.coverage
+.env
 build
 dist
 docs/_build
 docs/_static/default.css
+htmlcov/
 Makefile.local
