@@ -1,3 +1,4 @@
 boto==2.9.4
 https://github.com/epicserve/pyflakes/archive/master.zip
 pep8
+Sphinx>=1.2.3,<1.3
