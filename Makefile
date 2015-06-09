@@ -8,12 +8,14 @@ clean:
 	-@ rm -rf s3_backups.egg-info/
 
 test:
-	@echo "Checking code using pep8 ..."
-	-@pep8 --ignore E501 .
-	@echo "Checking code using pyflakes ..."
-	-@pyflakes .
-	@echo "Running tests ..."
-	-@python s3_backups/tests.py
+	@echo "\nChecking code using pep8 ..."
+	@pep8 --ignore E501 .
+	@echo "\nChecking code using pyflakes ..."
+	@pyflakes .
+	@echo "\nChecking sphinx syntax ..."
+	@cd docs/ && sphinx-build -nW -b html -d _build/doctrees . _build/html
+	@echo "\nRunning tests ..."
+	@python s3_backups/tests.py
 
 backup_postgres:
 	-s3_backups/postgres_to_s3.py \
