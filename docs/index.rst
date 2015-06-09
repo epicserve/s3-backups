@@ -1,15 +1,16 @@
 S3 Backups
 ==========
 
-.. image:: https://pypip.in/v/s3-backups/badge.png
-        :target: https://pypi.python.org/pypi/s3-backups
-
-.. image:: https://travis-ci.org/epicserve/s3-backups.png?branch=master
-    :alt: Build Status
-    :target: http://travis-ci.org/epicserve/epicserve
+|Build Status|
 
 `S3 Backups <https://github.com/epicserve/s3-backups>`_ provides easy scripts that system administrators can use to backup
 data from programs likes PostgreSQL, MySQL, Redis, etc.
+
+.. |Build Status| raw:: html
+
+    <a href="http://travis-ci.org/epicserve/epicserve">
+        <img src="https://travis-ci.org/epicserve/s3-backups.png?branch=master"/>
+    </a>
 
 Installation
 ------------
