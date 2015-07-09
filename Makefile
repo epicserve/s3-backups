@@ -1,21 +1,30 @@
 help:
-	-@ echo "clean  remove build dirs"
-	-@ echo "test   run tests"
+	-@ echo "clean          remove build dirs"
+	-@ echo "lint           check the code using pep8 and pyflakes"
+	-@ echo "lint_docs      check docs source code"
+	-@ echo "test           run tests"
+	-@ echo "test_coverage  run tests with coverage"
 
 clean:
 	-@ rm -rf build/
 	-@ rm -rf dist/
 	-@ rm -rf s3_backups.egg-info/
 
-test:
-	@echo "\nChecking code using pep8 ..."
-	@pep8 --ignore E501 .
-	@echo "\nChecking code using pyflakes ..."
-	@pyflakes .
+lint:
+	@echo "Checking code using pep8 and pyflakes ..."
+	@flake8 . --ignore=E501
+
+lint_docs:
 	@echo "\nChecking sphinx syntax ..."
 	@cd docs/ && sphinx-build -nW -b html -d _build/doctrees . _build/html
+
+test:
 	@echo "\nRunning tests ..."
 	@python s3_backups/tests.py
+
+test_coverage:
+	@echo "\nRunning tests with coverage ..."
+	@coverage run s3_backups/tests.py && coverage html && open htmlcov/index.html
 
 backup_postgres:
 	-s3_backups/postgres_to_s3.py \

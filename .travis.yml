@@ -6,4 +6,8 @@ install:
   - pip install -r requirements/dev.txt
   - pip install . --use-mirrors
 script:
-  - make test
+  - make lint
+  - make lint_docs
+  - coverage run s3_backups/tests.py
+  - coverage report
+
