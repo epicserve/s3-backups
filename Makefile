@@ -12,7 +12,7 @@ clean:
 
 lint:
 	@echo "Checking code using pep8 and pyflakes ..."
-	@flake8 . --ignore=E501
+	@flake8
 
 lint_docs:
 	@echo "\nChecking sphinx syntax ..."
