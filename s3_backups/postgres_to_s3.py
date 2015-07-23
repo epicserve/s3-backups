@@ -42,7 +42,7 @@ def backup():
 
     log.info("Preparing " + FILENAME + " from the database dump ...")
 
-    # create postgres databeses dump
+    # create postgres databases dump
     with tempfile.NamedTemporaryFile() as t1:
         proc1 = subprocess.Popen(POSTGRES_DUMP_PATH, shell=True, universal_newlines=True, stdout=t1)
         proc1.wait()
